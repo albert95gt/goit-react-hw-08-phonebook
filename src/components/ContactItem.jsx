@@ -1,8 +1,8 @@
 // import PropTypes from 'prop-types';
 // import { useDeleteContactMutation } from 'redux/contacts/contactApi';
 // import { toast } from 'react-toastify';
-import ClipLoader from 'react-spinners/ClipLoader';
-import { MdDeleteForever } from 'react-icons/md';
+// import ClipLoader from 'react-spinners/ClipLoader';
+// import { MdDeleteForever } from 'react-icons/md';
 import { contactsOperations } from 'redux/contacts';
 import { useDispatch } from 'react-redux';
 
