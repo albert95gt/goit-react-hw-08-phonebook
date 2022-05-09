@@ -1,30 +1,29 @@
 import React from 'react';
 import ContactItem from './ContactItem';
+import BounceLoader from 'react-spinners/BounceLoader';
+
 import { useSelector } from 'react-redux';
+import { useGetContactsQuery } from 'redux/contacts/contactApi';
 import { contactsSelectors } from 'redux/contacts';
-// import { useGetContactsQuery } from 'redux/contacts/contactApi';
 
 const ContactList = () => {
-  const contacts = useSelector(contactsSelectors.getAllContacts);
-  //   const { data, isFetching } = useGetContactsQuery();
-  //   const filterValue = useSelector(state => state.filter.value);
-  //   const filteredContacts = data?.filter(({ name }) =>
-  //     name.toLowerCase().includes(filterValue.toLowerCase())
-  //   );
+  const filter = useSelector(contactsSelectors.getFilter);
+
+  const { contacts, isFetching } = useGetContactsQuery(undefined, {
+    selectFromResult: ({ data, isFetching }) => ({
+      contacts: data ? contactsSelectors.getVisibleContacts(data, filter) : [],
+      isFetching,
+    }),
+    // refetchOnMountOrArgChange: true,
+  });
 
   return (
     <ul>
+      {isFetching && <BounceLoader color="orange" />}
       {contacts &&
         contacts.map(contact => {
-          return <ContactItem key={contact.id} contact={contact} />;
-        })}
-      {/* {isFetching && !data && <BounceLoader color="orange" />}
-
-      {filteredContacts &&
-        data &&
-        filteredContacts.map(contact => {
           return <ContactItem key={contact.id} contact={contact}></ContactItem>;
-        })} */}
+        })}
     </ul>
   );
 };

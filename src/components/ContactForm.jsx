@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import { MdPersonAddAlt1 } from 'react-icons/md';
-// import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-import { contactsOperations } from 'redux/contacts';
-// import {
-//   useCreateContactMutation,
-//   useGetContactsQuery,
-// } from 'redux/contacts/contactApi';
+import { toast } from 'react-toastify';
+
+import {
+  useCreateContactMutation,
+  useGetContactsQuery,
+} from 'redux/contacts/contactApi';
 
 const ContactForm = () => {
-  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  // const { data } = useGetContactsQuery();
-  // const [addContact] = useCreateContactMutation();
+  const { data } = useGetContactsQuery();
+  const [addContact] = useCreateContactMutation();
 
   const handdleChange = event => {
     const name = event.currentTarget.name;
@@ -32,21 +30,20 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
-    // const searchContact = await data.some(contact => {
-    //   return contact.name.toLowerCase().includes(name.toLowerCase());
-    // });
-    // if (searchContact) {
-    //   toast.error(`${name} is alredy in contacts!!!`);
-    //   return;
-    // }
+    const searchContact = await data.some(contact => {
+      return contact.name.toLowerCase().includes(name.toLowerCase());
+    });
+    if (searchContact) {
+      toast.error(`${name} is alredy in contacts!!!`);
+      return;
+    }
 
-    // await addContact({ name, number });
-    // toast.success(`${name} has added to contacts list`);
+    await addContact({ name, number });
+    toast.success(`${name} has added to contacts list`);
 
-    dispatch(contactsOperations.addContacts({ name, number }));
     setName('');
     setNumber('');
   };
