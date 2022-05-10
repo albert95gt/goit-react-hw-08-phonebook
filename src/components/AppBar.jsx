@@ -23,7 +23,9 @@ export default function AppBar() {
         <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </header>
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }

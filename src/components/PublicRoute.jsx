@@ -6,7 +6,7 @@ import React from 'react';
 export default function PublicRoute({
   children,
   restricted = false,
-  navigateTo = '/',
+  navigateTo = '/contacts',
 }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const shouldNavigate = isLoggedIn && restricted;

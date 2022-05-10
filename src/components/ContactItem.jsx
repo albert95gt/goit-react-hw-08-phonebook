@@ -5,7 +5,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { MdDeleteForever } from 'react-icons/md';
 
 const ContactItem = ({ contact }) => {
-  const { id, name, phone } = contact;
+  const { id, name, number } = contact;
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
 
   const handleDeleteContact = () => {
@@ -16,7 +16,7 @@ const ContactItem = ({ contact }) => {
   return (
     <li>
       <span>{name}:</span>
-      <span>{phone}</span>
+      <span>{number}</span>
       <button type="button" onClick={handleDeleteContact} disabled={isLoading}>
         Delete
         {isLoading ? (
