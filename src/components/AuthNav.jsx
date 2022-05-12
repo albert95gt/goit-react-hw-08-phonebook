@@ -1,4 +1,4 @@
-import { Button, ButtonBase, Typography } from '@mui/material';
+import { ButtonBase, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 export default function AuthNav() {
@@ -25,8 +25,6 @@ export default function AuthNav() {
           Login
         </Typography>
       </ButtonBase>
-      {/* <NavLink to="/register">Register</NavLink> */}
-      {/* <NavLink to="/login">Login</NavLink> */}
     </>
   );
 }
