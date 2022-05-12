@@ -6,7 +6,7 @@ export default function UserMenu() {
   const userEmail = useSelector(authSelectors.getUserEmail);
   return (
     <>
-      <span>Welcome, {userEmail}</span>
+      <span>{userEmail}</span>
 
       <button type="button" onClick={() => dispatch(authOperations.logOut())}>
         Logout

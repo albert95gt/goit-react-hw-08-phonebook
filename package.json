@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://albert95gt.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.7.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -19,7 +23,6 @@
     "react-spinners": "^0.11.0",
     "react-toastify": "^8.2.0",
     "redux-persist": "^6.0.0",
-    "styled-components": "^5.3.5",
     "use-debounce": "^8.0.1",
     "web-vitals": "^2.1.3"
   },

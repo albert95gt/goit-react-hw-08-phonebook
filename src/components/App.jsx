@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import AppBar from './AppBar';
+import Header from './Header/Header';
 import { authOperations, authSelectors } from 'redux/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, Suspense, lazy } from 'react';
@@ -16,7 +16,6 @@ export const App = () => {
   const isFetchingCurrentUser = useSelector(
     authSelectors.getIsFetchingCurrentUser
   );
-  console.log(isFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
@@ -29,7 +28,7 @@ export const App = () => {
         <>
           <Suspense fallback={<p>Loading...</p>}>
             <Routes>
-              <Route path="/" element={<AppBar />}>
+              <Route path="/" element={<Header />}>
                 <Route
                   index
                   element={
