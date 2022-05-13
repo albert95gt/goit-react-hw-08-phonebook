@@ -43,7 +43,11 @@ export default function Header() {
 
   return (
     <>
-      <AppBar position="static" color="secondary" sx={{ borderRadius: 2 }}>
+      <AppBar
+        position="static"
+        color="secondary"
+        sx={{ borderRadius: 2, mb: 2 }}
+      >
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Navigation />
@@ -76,9 +80,7 @@ export default function Header() {
                   onClose={handleCloseUserMenu}
                 >
                   <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">
-                      <UserMenu />
-                    </Typography>
+                    <UserMenu />
                   </MenuItem>
                 </Menu>
               </Box>
@@ -169,9 +171,8 @@ export default function Header() {
           </Toolbar>
         </Container>
       </AppBar>
-      <main>
-        <Outlet />
-      </main>
+
+      <Outlet />
     </>
   );
 }

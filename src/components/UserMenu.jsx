@@ -1,3 +1,5 @@
+import { Button, Typography } from '@mui/material';
+import { Logout } from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
 import { authOperations, authSelectors } from '../redux/auth';
 
@@ -6,11 +8,19 @@ export default function UserMenu() {
   const userEmail = useSelector(authSelectors.getUserEmail);
   return (
     <>
-      <span>{userEmail}</span>
+      <Typography variant="body1" component="span" sx={{ mr: 1 }}>
+        {userEmail}
+      </Typography>
 
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+      <Button
+        size="small"
+        variant="contained"
+        color="secondary"
+        endIcon={<Logout />}
+        onClick={() => dispatch(authOperations.logOut())}
+      >
         Logout
-      </button>
+      </Button>
     </>
   );
 }

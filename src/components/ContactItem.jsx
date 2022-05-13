@@ -1,8 +1,17 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { generateDiceBearAvataaars } from 'utils';
 import { useDeleteContactMutation } from 'redux/contacts/contactApi';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { MdDeleteForever } from 'react-icons/md';
+import {
+  Avatar,
+  IconButton,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 const ContactItem = ({ contact }) => {
   const { id, name, number } = contact;
@@ -10,31 +19,51 @@ const ContactItem = ({ contact }) => {
 
   const handleDeleteContact = () => {
     deleteContact(id);
-    alert(`Contact ${name} successfully deleted!`);
+    toast.success(`Contact ${name} successfully deleted!`);
   };
 
   return (
-    <li>
-      <span>{name}:</span>
-      <span>{number}</span>
-      <button type="button" onClick={handleDeleteContact} disabled={isLoading}>
-        Delete
-        {isLoading ? (
-          <ClipLoader size="20px" color="aqua" />
-        ) : (
-          <MdDeleteForever color="#f69d3c" size={22} />
-        )}
-      </button>
-    </li>
+    <ListItem
+      divider
+      sx={{
+        display: { sx: 'block', md: 'flex' },
+        alignItems: 'center',
+        maxWidth: 400,
+        minHeight: 150,
+      }}
+    >
+      <ListItemAvatar>
+        <Avatar
+          alt="Bear avatars"
+          src={generateDiceBearAvataaars(Math.random())}
+        />
+      </ListItemAvatar>
+      <ListItemText
+        primary={name}
+        secondary={
+          <Typography variant="body1" component="span">
+            {number}
+          </Typography>
+        }
+      />
+      <IconButton
+        variant="contained"
+        color="secondary"
+        onClick={handleDeleteContact}
+        aria-label="delete"
+      >
+        {isLoading ? <ClipLoader size="20px" color="aqua" /> : <Delete />}
+      </IconButton>
+    </ListItem>
   );
 };
 
-// ContactItem.propTypes = {
-//   contact: PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     phone: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
+ContactItem.propTypes = {
+  contact: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ContactItem;
