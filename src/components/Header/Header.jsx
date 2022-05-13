@@ -12,11 +12,10 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Typography,
   Tooltip,
   Avatar,
 } from '@mui/material';
-import { MenuSharp, ContactPhoneSharp } from '@mui/icons-material';
+import { MenuSharp } from '@mui/icons-material';
 import { useState } from 'react';
 
 export default function Header() {
@@ -91,10 +90,6 @@ export default function Header() {
                     display: { xs: 'flex', md: 'none', alignItems: 'center' },
                   }}
                 >
-                  <ContactPhoneSharp
-                    sx={{ display: { xs: 'flex', md: 'none' } }}
-                  />
-
                   <Menu
                     id="menu-appbar"
                     anchorEl={anchorElNav}
@@ -142,28 +137,6 @@ export default function Header() {
                     display: { xs: 'none', md: 'flex', alignItems: 'center' },
                   }}
                 >
-                  <ContactPhoneSharp
-                    sx={{
-                      display: { xs: 'none', md: 'flex' },
-                      mr: 1,
-                    }}
-                  />
-                  <Typography
-                    variant="h6"
-                    noWrap
-                    component="a"
-                    href="/"
-                    sx={{
-                      mr: 2,
-                      display: { xs: 'none', md: 'flex' },
-                      fontFamily: 'monospace',
-                      fontWeight: 700,
-                      color: 'inherit',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    PhoneBook
-                  </Typography>
                   <AuthNav />
                 </Box>
               </>
