@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -18,7 +19,12 @@ const register = createAsyncThunk('auth/register', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    alert(error.message);
+    const statusError = error.response.status;
+    if (statusError === 400) {
+      toast.error('User with this email already exists');
+    } else {
+      toast.error(error.message);
+    }
   }
 });
 
@@ -28,7 +34,12 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    alert(error.message);
+    const statusError = error.response.status;
+    if (statusError === 400) {
+      toast.error('Invalid email or password');
+    } else {
+      toast.error(error.message);
+    }
   }
 });
 
@@ -37,7 +48,7 @@ const logOut = createAsyncThunk('auth/logout', async () => {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    alert(error.message);
+    toast.error(error.message);
   }
 });
 
